@@ -28,9 +28,9 @@
     },
     "program": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::program.program",
-      "inversedBy": "class"
+      "inversedBy": "classes"
     }
   }
 }
