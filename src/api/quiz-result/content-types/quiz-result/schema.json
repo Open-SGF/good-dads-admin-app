@@ -14,9 +14,9 @@
   "attributes": {
     "quiz": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::quiz.quiz",
-      "inversedBy": "quiz_result"
+      "inversedBy": "quiz_results"
     },
     "completed": {
       "type": "boolean"
@@ -25,6 +25,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quiz-question-answer.quiz-question-answer"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "quiz_statuses"
     }
   }
 }

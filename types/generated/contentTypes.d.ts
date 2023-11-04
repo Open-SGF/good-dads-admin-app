@@ -708,6 +708,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::quiz-result.quiz-result'
     >;
+    quiz_statuses: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::quiz-result.quiz-result'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -958,9 +963,9 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
       'oneToMany',
       'api::quiz-question.quiz-question'
     >;
-    quiz_result: Attribute.Relation<
+    quiz_results: Attribute.Relation<
       'api::quiz.quiz',
-      'oneToOne',
+      'oneToMany',
       'api::quiz-result.quiz-result'
     >;
     createdAt: Attribute.DateTime;
@@ -1055,7 +1060,7 @@ export interface ApiQuizResultQuizResult extends Schema.CollectionType {
   attributes: {
     quiz: Attribute.Relation<
       'api::quiz-result.quiz-result',
-      'oneToOne',
+      'manyToOne',
       'api::quiz.quiz'
     >;
     completed: Attribute.Boolean;
@@ -1063,6 +1068,11 @@ export interface ApiQuizResultQuizResult extends Schema.CollectionType {
       'api::quiz-result.quiz-result',
       'oneToMany',
       'api::quiz-question-answer.quiz-question-answer'
+    >;
+    users_permissions_user: Attribute.Relation<
+      'api::quiz-result.quiz-result',
+      'manyToOne',
+      'plugin::users-permissions.user'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

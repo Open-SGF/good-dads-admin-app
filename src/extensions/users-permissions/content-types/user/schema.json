@@ -155,6 +155,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quiz-result.quiz-result"
+    },
+    "quiz_statuses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz-result.quiz-result",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
