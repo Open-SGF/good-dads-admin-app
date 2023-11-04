@@ -362,6 +362,86 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiChildChild extends Schema.CollectionType {
+  collectionName: 'children';
+  info: {
+    singularName: 'child';
+    pluralName: 'children';
+    displayName: 'Child';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    age: Attribute.String;
+    dateOfBirth: Attribute.Date;
+    contact: Attribute.Enumeration<['Custody', 'Visitation', 'Phone', 'None']>;
+    childSupport: Attribute.Float;
+    user: Attribute.Relation<
+      'api::child.child',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::child.child',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::child.child',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInterestedPartyInterestedParty
+  extends Schema.CollectionType {
+  collectionName: 'interested_parties';
+  info: {
+    singularName: 'interested-party';
+    pluralName: 'interested-parties';
+    displayName: 'InterestedParty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    phoneNumber: Attribute.String;
+    role: Attribute.Enumeration<
+      ['Case Worker', 'Probation Officer', 'Parole Officer']
+    >;
+    user: Attribute.Relation<
+      'api::interested-party.interested-party',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::interested-party.interested-party',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::interested-party.interested-party',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -587,7 +667,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     username: Attribute.String &
@@ -615,6 +694,43 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'manyToOne',
       'plugin::users-permissions.role'
+    >;
+    name: Attribute.String;
+    streetAddress: Attribute.String;
+    city: Attribute.String;
+    zipcode: Attribute.String;
+    employer: Attribute.String;
+    cellPhoneNumber: Attribute.String;
+    homePhoneNumber: Attribute.String;
+    workPhoneNumber: Attribute.String;
+    altContactNumber: Attribute.String;
+    maritalStatus: Attribute.Enumeration<
+      ['Married', 'Engaged', 'Living with partner', 'Single', 'Widowed']
+    >;
+    ethnicity: Attribute.Enumeration<
+      [
+        'American Indian or Alaska Native',
+        'Asian',
+        'Black or African American',
+        'Hispanic or Latino',
+        'Native Hawaiian or Islander',
+        'White'
+      ]
+    >;
+    monthlyChildSupport: Attribute.Float;
+    dateFormFilledOut: Attribute.Date;
+    dateEnrolled: Attribute.Date;
+    dateAccepted: Attribute.Date;
+    classLocation: Attribute.String;
+    children: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::child.child'
+    >;
+    interested_parties: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::interested-party.interested-party'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -687,6 +803,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::child.child': ApiChildChild;
+      'api::interested-party.interested-party': ApiInterestedPartyInterestedParty;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;

@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "interested_parties",
+  "info": {
+    "singularName": "interested-party",
+    "pluralName": "interested-parties",
+    "displayName": "InterestedParty"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "Case Worker",
+        "Probation Officer",
+        "Parole Officer"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "interested_parties"
+    }
+  }
+}
