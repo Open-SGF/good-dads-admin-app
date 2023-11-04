@@ -362,86 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiChildChild extends Schema.CollectionType {
-  collectionName: 'children';
-  info: {
-    singularName: 'child';
-    pluralName: 'children';
-    displayName: 'Child';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    age: Attribute.String;
-    dateOfBirth: Attribute.Date;
-    contact: Attribute.Enumeration<['Custody', 'Visitation', 'Phone', 'None']>;
-    childSupport: Attribute.Float;
-    user: Attribute.Relation<
-      'api::child.child',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::child.child',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::child.child',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiInterestedPartyInterestedParty
-  extends Schema.CollectionType {
-  collectionName: 'interested_parties';
-  info: {
-    singularName: 'interested-party';
-    pluralName: 'interested-parties';
-    displayName: 'InterestedParty';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    phoneNumber: Attribute.String;
-    role: Attribute.Enumeration<
-      ['Case Worker', 'Probation Officer', 'Parole Officer']
-    >;
-    user: Attribute.Relation<
-      'api::interested-party.interested-party',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::interested-party.interested-party',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::interested-party.interested-party',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -776,6 +696,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'oneToMany',
       'api::interested-party.interested-party'
     >;
+    cohort: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToOne',
+      'api::cohort.cohort'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -793,6 +718,346 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface PluginI18NLocale extends Schema.CollectionType {
+  collectionName: 'i18n_locale';
+  info: {
+    singularName: 'locale';
+    pluralName: 'locales';
+    collectionName: 'locales';
+    displayName: 'Locale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.SetMinMax<{
+        min: 1;
+        max: 50;
+      }>;
+    code: Attribute.String & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::i18n.locale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiChildChild extends Schema.CollectionType {
+  collectionName: 'children';
+  info: {
+    singularName: 'child';
+    pluralName: 'children';
+    displayName: 'Child';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    age: Attribute.String;
+    dateOfBirth: Attribute.Date;
+    contact: Attribute.Enumeration<['Custody', 'Visitation', 'Phone', 'None']>;
+    childSupport: Attribute.Float;
+    user: Attribute.Relation<
+      'api::child.child',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::child.child',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::child.child',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiClassClass extends Schema.CollectionType {
+  collectionName: 'classes';
+  info: {
+    singularName: 'class';
+    pluralName: 'classes';
+    displayName: 'Class';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.String;
+    date: Attribute.DateTime;
+    quiz: Attribute.Relation<'api::class.class', 'oneToOne', 'api::quiz.quiz'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::class.class',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::class.class',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCohortCohort extends Schema.CollectionType {
+  collectionName: 'cohorts';
+  info: {
+    singularName: 'cohort';
+    pluralName: 'cohorts';
+    displayName: 'Cohort';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    description: Attribute.Text;
+    location: Attribute.String;
+    users: Attribute.Relation<
+      'api::cohort.cohort',
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    programs: Attribute.Relation<
+      'api::cohort.cohort',
+      'oneToMany',
+      'api::program.program'
+    >;
+    quizzes: Attribute.Relation<
+      'api::cohort.cohort',
+      'oneToMany',
+      'api::quiz.quiz'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cohort.cohort',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::cohort.cohort',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiInterestedPartyInterestedParty
+  extends Schema.CollectionType {
+  collectionName: 'interested_parties';
+  info: {
+    singularName: 'interested-party';
+    pluralName: 'interested-parties';
+    displayName: 'InterestedParty';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    phoneNumber: Attribute.String;
+    role: Attribute.Enumeration<
+      ['Case Worker', 'Probation Officer', 'Parole Officer']
+    >;
+    user: Attribute.Relation<
+      'api::interested-party.interested-party',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::interested-party.interested-party',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::interested-party.interested-party',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProgramProgram extends Schema.CollectionType {
+  collectionName: 'programs';
+  info: {
+    singularName: 'program';
+    pluralName: 'programs';
+    displayName: 'Program';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.Text;
+    length: Attribute.String;
+    completed: Attribute.Boolean;
+    classes: Attribute.Relation<
+      'api::program.program',
+      'oneToMany',
+      'api::class.class'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::program.program',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::program.program',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiQuizQuiz extends Schema.CollectionType {
+  collectionName: 'quizzes';
+  info: {
+    singularName: 'quiz';
+    pluralName: 'quizzes';
+    displayName: 'Quiz';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    quiz_questions: Attribute.Relation<
+      'api::quiz.quiz',
+      'oneToMany',
+      'api::quiz-question.quiz-question'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::quiz.quiz', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
+  collectionName: 'quiz_questions';
+  info: {
+    singularName: 'quiz-question';
+    pluralName: 'quiz-questions';
+    displayName: 'QuizQuestion';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    question: Attribute.String;
+    quiz_question_answers: Attribute.Relation<
+      'api::quiz-question.quiz-question',
+      'oneToMany',
+      'api::quiz-question-answer.quiz-question-answer'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::quiz-question.quiz-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::quiz-question.quiz-question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiQuizQuestionAnswerQuizQuestionAnswer
+  extends Schema.CollectionType {
+  collectionName: 'quiz_question_answers';
+  info: {
+    singularName: 'quiz-question-answer';
+    pluralName: 'quiz-question-answers';
+    displayName: 'QuizQuestionAnswer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answer: Attribute.String;
+    isCorrectAnswer: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::quiz-question-answer.quiz-question-answer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::quiz-question-answer.quiz-question-answer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -803,14 +1068,20 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::child.child': ApiChildChild;
-      'api::interested-party.interested-party': ApiInterestedPartyInterestedParty;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::child.child': ApiChildChild;
+      'api::class.class': ApiClassClass;
+      'api::cohort.cohort': ApiCohortCohort;
+      'api::interested-party.interested-party': ApiInterestedPartyInterestedParty;
+      'api::program.program': ApiProgramProgram;
+      'api::quiz.quiz': ApiQuizQuiz;
+      'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
+      'api::quiz-question-answer.quiz-question-answer': ApiQuizQuestionAnswerQuizQuestionAnswer;
     }
   }
 }

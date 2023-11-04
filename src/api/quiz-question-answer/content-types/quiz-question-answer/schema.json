@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quiz_question_answers",
+  "info": {
+    "singularName": "quiz-question-answer",
+    "pluralName": "quiz-question-answers",
+    "displayName": "QuizQuestionAnswer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "answer": {
+      "type": "string"
+    },
+    "isCorrectAnswer": {
+      "type": "boolean"
+    }
+  }
+}

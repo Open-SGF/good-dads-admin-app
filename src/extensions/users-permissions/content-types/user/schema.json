@@ -139,6 +139,12 @@
       "relation": "oneToMany",
       "target": "api::interested-party.interested-party",
       "mappedBy": "user"
+    },
+    "cohort": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::cohort.cohort",
+      "inversedBy": "users"
     }
   }
 }
