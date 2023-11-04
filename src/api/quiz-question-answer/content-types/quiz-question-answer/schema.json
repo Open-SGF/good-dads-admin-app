@@ -4,7 +4,8 @@
   "info": {
     "singularName": "quiz-question-answer",
     "pluralName": "quiz-question-answers",
-    "displayName": "QuizQuestionAnswer"
+    "displayName": "QuizQuestionAnswer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,12 @@
     },
     "isCorrectAnswer": {
       "type": "boolean"
+    },
+    "quiz_question": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::quiz-question.quiz-question",
+      "inversedBy": "quiz_question_answers"
     }
   }
 }

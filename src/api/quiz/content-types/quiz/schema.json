@@ -15,15 +15,16 @@
     "name": {
       "type": "string"
     },
-    "quiz_questions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::quiz-question.quiz-question"
-    },
     "quiz_results": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quiz-result.quiz-result",
+      "mappedBy": "quiz"
+    },
+    "quiz_questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quiz-question.quiz-question",
       "mappedBy": "quiz"
     }
   }

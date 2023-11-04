@@ -958,15 +958,15 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    quiz_questions: Attribute.Relation<
-      'api::quiz.quiz',
-      'oneToMany',
-      'api::quiz-question.quiz-question'
-    >;
     quiz_results: Attribute.Relation<
       'api::quiz.quiz',
       'oneToMany',
       'api::quiz-result.quiz-result'
+    >;
+    quiz_questions: Attribute.Relation<
+      'api::quiz.quiz',
+      'oneToMany',
+      'api::quiz-question.quiz-question'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -996,6 +996,11 @@ export interface ApiQuizQuestionQuizQuestion extends Schema.CollectionType {
       'oneToMany',
       'api::quiz-question-answer.quiz-question-answer'
     >;
+    quiz: Attribute.Relation<
+      'api::quiz-question.quiz-question',
+      'manyToOne',
+      'api::quiz.quiz'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1021,6 +1026,7 @@ export interface ApiQuizQuestionAnswerQuizQuestionAnswer
     singularName: 'quiz-question-answer';
     pluralName: 'quiz-question-answers';
     displayName: 'QuizQuestionAnswer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1028,6 +1034,11 @@ export interface ApiQuizQuestionAnswerQuizQuestionAnswer
   attributes: {
     answer: Attribute.String;
     isCorrectAnswer: Attribute.Boolean;
+    quiz_question: Attribute.Relation<
+      'api::quiz-question-answer.quiz-question-answer',
+      'manyToOne',
+      'api::quiz-question.quiz-question'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

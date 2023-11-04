@@ -18,7 +18,14 @@
     "quiz_question_answers": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::quiz-question-answer.quiz-question-answer"
+      "target": "api::quiz-question-answer.quiz-question-answer",
+      "mappedBy": "quiz_question"
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::quiz.quiz",
+      "inversedBy": "quiz_questions"
     }
   }
 }
