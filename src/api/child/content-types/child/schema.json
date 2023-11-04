@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "FirstName": {
       "type": "string"
     },
     "age": {
@@ -38,6 +38,9 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "children"
+    },
+    "LastName": {
+      "type": "string"
     }
   }
 }

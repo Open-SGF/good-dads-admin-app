@@ -659,19 +659,19 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    name: Attribute.String;
-    streetAddress: Attribute.String;
-    city: Attribute.String;
-    zipcode: Attribute.String;
-    employer: Attribute.String;
-    cellPhoneNumber: Attribute.String;
-    homePhoneNumber: Attribute.String;
-    workPhoneNumber: Attribute.String;
-    altContactNumber: Attribute.String;
-    maritalStatus: Attribute.Enumeration<
+    FirstName: Attribute.String;
+    StreetAddress: Attribute.String;
+    City: Attribute.String;
+    Zipcode: Attribute.String;
+    Employer: Attribute.String;
+    CellPhoneNumber: Attribute.String;
+    HomePhoneNumber: Attribute.String;
+    WorkPhoneNumber: Attribute.String;
+    AltContactNumber: Attribute.String;
+    MaritalStatus: Attribute.Enumeration<
       ['Married', 'Engaged', 'Living with partner', 'Single', 'Widowed']
     >;
-    ethnicity: Attribute.Enumeration<
+    Ethnicity: Attribute.Enumeration<
       [
         'American Indian or Alaska Native',
         'Asian',
@@ -681,11 +681,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
         'White'
       ]
     >;
-    monthlyChildSupport: Attribute.Float;
-    dateFormFilledOut: Attribute.Date;
-    dateEnrolled: Attribute.Date;
-    dateAccepted: Attribute.Date;
-    classLocation: Attribute.String;
+    MonthlyChildSupport: Attribute.Float;
+    DateFormFilledOut: Attribute.Date;
+    DateEnrolled: Attribute.Date;
+    DateAccepted: Attribute.Date;
+    ClassLocation: Attribute.String;
     children: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToMany',
@@ -701,6 +701,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'api::cohort.cohort'
     >;
+    Approved: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -730,7 +731,7 @@ export interface ApiChildChild extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String;
+    FirstName: Attribute.String;
     age: Attribute.String;
     dateOfBirth: Attribute.Date;
     contact: Attribute.Enumeration<['Custody', 'Visitation', 'Phone', 'None']>;
@@ -740,6 +741,7 @@ export interface ApiChildChild extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    LastName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

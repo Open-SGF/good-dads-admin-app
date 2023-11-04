@@ -65,34 +65,34 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "name": {
+    "FirstName": {
       "type": "string"
     },
-    "streetAddress": {
+    "StreetAddress": {
       "type": "string"
     },
-    "city": {
+    "City": {
       "type": "string"
     },
-    "zipcode": {
+    "Zipcode": {
       "type": "string"
     },
-    "employer": {
+    "Employer": {
       "type": "string"
     },
-    "cellPhoneNumber": {
+    "CellPhoneNumber": {
       "type": "string"
     },
-    "homePhoneNumber": {
+    "HomePhoneNumber": {
       "type": "string"
     },
-    "workPhoneNumber": {
+    "WorkPhoneNumber": {
       "type": "string"
     },
-    "altContactNumber": {
+    "AltContactNumber": {
       "type": "string"
     },
-    "maritalStatus": {
+    "MaritalStatus": {
       "type": "enumeration",
       "enum": [
         "Married",
@@ -102,7 +102,7 @@
         "Widowed"
       ]
     },
-    "ethnicity": {
+    "Ethnicity": {
       "type": "enumeration",
       "enum": [
         "American Indian or Alaska Native",
@@ -113,19 +113,19 @@
         "White"
       ]
     },
-    "monthlyChildSupport": {
+    "MonthlyChildSupport": {
       "type": "float"
     },
-    "dateFormFilledOut": {
+    "DateFormFilledOut": {
       "type": "date"
     },
-    "dateEnrolled": {
+    "DateEnrolled": {
       "type": "date"
     },
-    "dateAccepted": {
+    "DateAccepted": {
       "type": "date"
     },
-    "classLocation": {
+    "ClassLocation": {
       "type": "string"
     },
     "children": {
@@ -145,6 +145,9 @@
       "relation": "manyToOne",
       "target": "api::cohort.cohort",
       "inversedBy": "users"
+    },
+    "Approved": {
+      "type": "boolean"
     }
   }
 }
