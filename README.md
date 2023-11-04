@@ -4,6 +4,7 @@
 ```zsh
 brew install nvm
 npm install --global yarn
+npm i strapi -g  
 ```
 Install doppler: https://docs.doppler.com/docs/install-cli
 Install nvm: 
