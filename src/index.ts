@@ -5,7 +5,23 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    const extensionService = strapi.plugin("graphql").service("extension");
+
+    extensionService.use({
+      resolversConfig: {
+        "Query.usersPermissionsUser": {
+          policies: [
+            async (context) => {
+              const loggedInUserId = context.state.user.id;
+              const targetedUserId = context.args.id
+              return loggedInUserId == targetedUserId;
+            },
+          ],
+        },
+      },
+    });
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
