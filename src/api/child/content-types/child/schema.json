@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "FirstName": {
+    "FullName": {
       "type": "string"
     },
     "age": {
@@ -32,15 +32,6 @@
     },
     "childSupport": {
       "type": "float"
-    },
-    "user": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "children"
-    },
-    "LastName": {
-      "type": "string"
     }
   }
 }

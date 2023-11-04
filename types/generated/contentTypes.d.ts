@@ -737,17 +737,11 @@ export interface ApiChildChild extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    FirstName: Attribute.String;
+    FullName: Attribute.String;
     age: Attribute.String;
     dateOfBirth: Attribute.Date;
     contact: Attribute.Enumeration<['Custody', 'Visitation', 'Phone', 'None']>;
     childSupport: Attribute.Float;
-    user: Attribute.Relation<
-      'api::child.child',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    LastName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

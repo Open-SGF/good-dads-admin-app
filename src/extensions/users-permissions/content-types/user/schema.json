@@ -131,8 +131,7 @@
     "children": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::child.child",
-      "mappedBy": "user"
+      "target": "api::child.child"
     },
     "interested_parties": {
       "type": "relation",
