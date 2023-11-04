@@ -702,6 +702,7 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'api::cohort.cohort'
     >;
     Approved: Attribute.Boolean;
+    LastName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

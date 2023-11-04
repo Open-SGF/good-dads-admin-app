@@ -148,6 +148,9 @@
     },
     "Approved": {
       "type": "boolean"
+    },
+    "LastName": {
+      "type": "string"
     }
   }
 }
