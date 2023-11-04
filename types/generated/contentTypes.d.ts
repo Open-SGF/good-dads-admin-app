@@ -776,6 +776,11 @@ export interface ApiClassClass extends Schema.CollectionType {
     description: Attribute.String;
     date: Attribute.DateTime;
     quiz: Attribute.Relation<'api::class.class', 'oneToOne', 'api::quiz.quiz'>;
+    program: Attribute.Relation<
+      'api::class.class',
+      'oneToOne',
+      'api::program.program'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -822,6 +827,11 @@ export interface ApiCohortCohort extends Schema.CollectionType {
       'api::cohort.cohort',
       'oneToMany',
       'api::quiz.quiz'
+    >;
+    program: Attribute.Relation<
+      'api::cohort.cohort',
+      'oneToOne',
+      'api::program.program'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -901,6 +911,16 @@ export interface ApiProgramProgram extends Schema.CollectionType {
       'api::program.program',
       'oneToMany',
       'api::class.class'
+    >;
+    class: Attribute.Relation<
+      'api::program.program',
+      'oneToOne',
+      'api::class.class'
+    >;
+    cohort: Attribute.Relation<
+      'api::program.program',
+      'oneToOne',
+      'api::cohort.cohort'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

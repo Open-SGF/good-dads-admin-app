@@ -28,6 +28,18 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::class.class"
+    },
+    "class": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::class.class",
+      "mappedBy": "program"
+    },
+    "cohort": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::cohort.cohort",
+      "inversedBy": "program"
     }
   }
 }
