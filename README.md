@@ -2,22 +2,27 @@
 
 ## Install dependencies
 ```zsh
-brew install doppler
 brew install nvm
 npm install --global yarn
 ```
+Install doppler: https://docs.doppler.com/docs/install-cli
+Install nvm: 
 
 ## Sync environment variables
 ```zsh
 doppler login
 doppler setup
-yarn env #Pulls secrets from doppler
 ```
 
-## Install dependencies
+## Configure node version
 ```zsh
 nvm install
 nvm use
+```
+
+## Populate environment variables
+```zsh
+yarn env #Pulls secrets from doppler
 ```
 
 ## Run project
