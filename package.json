@@ -16,6 +16,7 @@
     "@strapi/plugin-graphql": "4.15.0",
     "@strapi/plugin-i18n": "4.15.0",
     "@strapi/plugin-users-permissions": "4.15.0",
+    "@strapi/provider-email-nodemailer": "^4.15.0",
     "@strapi/strapi": "4.15.0",
     "pg": "8.8.0"
   },

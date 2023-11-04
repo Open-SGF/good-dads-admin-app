@@ -32,3 +32,8 @@ yarn install
 yarn build
 yarn develop
 ```
+
+## Local email setup
+```zsh
+docker run -p 1080:1080 -p 1025:1025 maildev/maildev
+```
