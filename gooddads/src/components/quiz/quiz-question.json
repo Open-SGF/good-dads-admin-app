@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_quiz_quiz_questions",
+  "info": {
+    "displayName": "Quiz Question",
+    "icon": "question"
+  },
+  "options": {},
+  "attributes": {
+    "Question": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    }
+  }
+}
