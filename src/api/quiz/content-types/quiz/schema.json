@@ -19,6 +19,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::quiz-question.quiz-question"
+    },
+    "quiz_result": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::quiz-result.quiz-result",
+      "mappedBy": "quiz"
     }
   }
 }

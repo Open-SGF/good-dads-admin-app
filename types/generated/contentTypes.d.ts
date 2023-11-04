@@ -703,6 +703,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     >;
     Approved: Attribute.Boolean;
     LastName: Attribute.String;
+    quiz_results: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::quiz-result.quiz-result'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -939,6 +944,11 @@ export interface ApiQuizQuiz extends Schema.CollectionType {
       'oneToMany',
       'api::quiz-question.quiz-question'
     >;
+    quiz_result: Attribute.Relation<
+      'api::quiz.quiz',
+      'oneToOne',
+      'api::quiz-result.quiz-result'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1017,6 +1027,47 @@ export interface ApiQuizQuestionAnswerQuizQuestionAnswer
   };
 }
 
+export interface ApiQuizResultQuizResult extends Schema.CollectionType {
+  collectionName: 'quiz_results';
+  info: {
+    singularName: 'quiz-result';
+    pluralName: 'quiz-results';
+    displayName: 'QuizStatus';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    quiz: Attribute.Relation<
+      'api::quiz-result.quiz-result',
+      'oneToOne',
+      'api::quiz.quiz'
+    >;
+    completed: Attribute.Boolean;
+    quiz_question_answers: Attribute.Relation<
+      'api::quiz-result.quiz-result',
+      'oneToMany',
+      'api::quiz-question-answer.quiz-question-answer'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::quiz-result.quiz-result',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::quiz-result.quiz-result',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1041,6 +1092,7 @@ declare module '@strapi/types' {
       'api::quiz.quiz': ApiQuizQuiz;
       'api::quiz-question.quiz-question': ApiQuizQuestionQuizQuestion;
       'api::quiz-question-answer.quiz-question-answer': ApiQuizQuestionAnswerQuizQuestionAnswer;
+      'api::quiz-result.quiz-result': ApiQuizResultQuizResult;
     }
   }
 }
