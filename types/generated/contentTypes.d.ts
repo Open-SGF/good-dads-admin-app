@@ -1057,7 +1057,7 @@ export interface ApiQuizResultQuizResult extends Schema.CollectionType {
   info: {
     singularName: 'quiz-result';
     pluralName: 'quiz-results';
-    displayName: 'QuizStatus';
+    displayName: 'QuizResult';
     description: '';
   };
   options: {
