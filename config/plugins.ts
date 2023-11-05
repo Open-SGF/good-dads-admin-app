@@ -1,4 +1,13 @@
 module.exports = ({ env }) => ({
+  upload: {
+    config: {
+      providerOptions: {
+        localServer: {
+          maxage: 300000
+        },
+      },
+    },
+  },
   graphql: {
     config: {
       endpoint: '/graphql',

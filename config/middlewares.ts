@@ -1,11 +1,30 @@
-export default [
-  'strapi::errors',
+module.exports = ({ env }) => [  'strapi::errors',
   {
     name: "strapi::security",
     config: {
       contentSecurityPolicy: {
         directives: {
-          "frame-src": [ "http://localhost:*", "self", "sandbox.embed.apollographql.com" ],
+          'connect-src': ["'self'", 'https:'],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+            'res.cloudinary.com',
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'market-assets.strapi.io',
+            'res.cloudinary.com',
+          ],
+          'frame-src': [
+            `http://${env('APP_HOST')}:${env('APP_PORT')}`,
+            "self",
+            "sandbox.embed.apollographql.com",
+          ],
+          upgradeInsecureRequests: null,
         },
       },
     },

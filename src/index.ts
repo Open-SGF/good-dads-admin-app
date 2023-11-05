@@ -19,6 +19,15 @@ export default {
             },
           ],
         },
+        "Mutation.updateUsersPermissionsUser": {
+          policies: [
+            async (context) => {
+              const loggedInUserId = context.state.user.id;
+              const targetedUserId = context.args.id
+              return loggedInUserId == targetedUserId;
+            },
+          ],
+        },
       },
     });
   },
