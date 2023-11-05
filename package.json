@@ -11,7 +11,6 @@
     "env": "doppler secrets download --no-file --format env > .env",
     "prebuild": "cd src/plugins/gooddads-reporting && npm run build"
   },
-  "devDependencies": {},
   "dependencies": {
     "@creazy231/strapi-plugin-apollo-sandbox": "^0.0.13",
     "@strapi/plugin-graphql": "4.15.0",
@@ -19,7 +18,10 @@
     "@strapi/plugin-users-permissions": "4.15.0",
     "@strapi/provider-email-nodemailer": "^4.15.0",
     "@strapi/strapi": "4.15.0",
-    "pg": "8.8.0"
+    "@types/d3": "^7.4.0",
+    "d3": "^7.6.1",
+    "pg": "8.8.0",
+    "react-faux-dom": "^4.5.0"
   },
   "author": {
     "name": "A Strapi developer"
