@@ -34,4 +34,8 @@ module.exports = ({ env }) => ({
       },
     },
   },
+  'gooddads-reporting': {
+    enabled: true,
+    resolve: './src/plugins/gooddads-reporting',
+  },
 });

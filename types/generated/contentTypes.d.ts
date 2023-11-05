@@ -1080,6 +1080,7 @@ export interface ApiQuizResultQuizResult extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.user'
     >;
+    score: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

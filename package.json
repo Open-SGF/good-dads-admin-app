@@ -8,7 +8,8 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "env": "doppler secrets download --no-file --format env > .env"
+    "env": "doppler secrets download --no-file --format env > .env",
+    "prebuild": "cd src/plugins/gooddads-reporting && npm run build"
   },
   "devDependencies": {},
   "dependencies": {
