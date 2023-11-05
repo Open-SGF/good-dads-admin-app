@@ -31,6 +31,9 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "quiz_statuses"
+    },
+    "score": {
+      "type": "float"
     }
   }
 }
